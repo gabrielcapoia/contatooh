@@ -1,5 +1,5 @@
 var express = require('express');
-var home = require('../app/routes/home');
+var load = require('express-load');
 
 module.exports = function (argument) {
 	var app = express();
@@ -10,12 +10,13 @@ module.exports = function (argument) {
 	//middleware
 	app.use(express.static('./public'));
 
-	home(app);
+	load('models',{cwd:'app'})
+		.then('controllers')
+		.then('routes')
+		.into(app);
 
 	app.set('view engine','ejs');
 	app.set('views','./app/views');
-
-
 
 	return app;
 }
