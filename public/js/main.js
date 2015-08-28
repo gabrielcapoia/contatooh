@@ -9,4 +9,6 @@ angular.module('contatooh', ['ngRoute'])
 			templateUrl: 'partials/contato.html',
 			controller: 'ContatoController'
 		});
+
+		$routeProvider.otherwise({redirectTo: '/contatos'});
 	});
